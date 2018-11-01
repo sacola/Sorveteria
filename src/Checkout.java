@@ -2,12 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- */
-
-/**
- * MantÃ©m uma lista de referÃªncias de ItemSobremesa.
- * NÃ£o hÃ¡ limites quanto ao nÃºmero de ItemSobremesa na lista
+ * Mantém uma lista de referências de ItemSobremesa.
+ * Não há limites quanto ao número de ItemSobremesa na lista
  * @author Rodrigo Gregori
  *
  */
@@ -15,7 +11,7 @@ public class Checkout {
 	private List<ItemSobremesa> itens;
 	
 	/**
-	 * Cria uma instÃ¢ncia com uma lista vazia de ItemSobremesa
+	 * Cria uma instância com uma lista vazia de ItemSobremesa
 	 */
 	public Checkout() {
 		itens = new ArrayList<>();
@@ -37,8 +33,8 @@ public class Checkout {
 	}
 	
 	/**
-	 * Retorna o nÃºmero de itens na lista
-	 * @return O nÃºmero de itens
+	 * Retorna o número de itens na lista
+	 * @return O número de itens
 	 */
 	public int numeroDeItens() {
 		return itens.size();
@@ -49,8 +45,11 @@ public class Checkout {
 	 * @return O custo total dos itens
 	 */
 	public int custoTotal() {
-		// TODO construir o cÃ³digo
-		return 0;
+		int valor = 0;
+		for(ItemSobremesa item : itens) {
+			valor += item.getCusto();
+		}
+		return valor;
 	}
 	
 	/**
@@ -58,8 +57,8 @@ public class Checkout {
 	 * @return O total dos impostos
 	 */
 	public int impostoTotal() {
-		// TODO construir o cÃ³digo
-		return 0;
+		// TODO construir o código
+		return (int) ((int) custoTotal() * (Sorveteria.IMPOSTO/100));
 	}
 	
 	/**
@@ -86,7 +85,7 @@ public class Checkout {
 	 */
 	@Override
 	public String toString() {
-		// gera cabeÃ§alho
+		// gera cabeçalho
 		String saida = String.format("%24s\n", Sorveteria.NOME_LOJA);
 		String linha = "";
 		for (int i = 0; i < Sorveteria.NOME_LOJA.length(); i++)
@@ -101,5 +100,3 @@ public class Checkout {
 		saida += String.format("%-25s %6s", "Custo Total", Sorveteria.centavos2ReaisECentavos(custoTotal()+impostoTotal()));
 		return saida; 
 	}
-	
-}
